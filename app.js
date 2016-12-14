@@ -1,5 +1,10 @@
-//Constructor function to include:
-//Means of preventing the duplicates within selections
-//Means of preventing consecutive duplicates by position
-//this will involve the usage of two different arrays
-//
+'use strict';
+var productArray = [];
+var imageRepository = document.getElementById('playingField');
+var leftField = document.getElementById('left');
+var centerField = document.getElementbyId('middle');
+var rightField = document.getElementbyId('right');
+var imageIdentifiers = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
+var previousArray = [];
+var updatedArray = [];
+var clickTracker = 0;
