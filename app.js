@@ -25,11 +25,56 @@ for (var i = 0; i < imageIdentifiers.length; i++) {
 function imageSelection() {
   return Math.floor(Math.random() * imageIdentifiers.length);
 }
+function makeArrayOfThreeNumbers() {
+  previousArray[0] = updatedArray[0];
+  previousArray[1] = updatedArray[1];
+  previousArray[2] = updatedArray[2];
+  updatedArray[0] = imageSelection();
+  while (updatedArray[0] === previousArray[0] || updatedArray[0] === previousArray[1] || updatedArray[0] === previousArray[2]){
+    updatedArray[0] = imageSelection();
+  }
+  updatedArray[1] = imageSelection();
+  while (updatedArray[1] === updatedArray[0] || updatedArray[1] === previousArray[0] || updatedArray[1] === previousArray[1] || updatedArray[1] === previousArray[2]){
+    updatedArray[1] = imageSelection();
+  }
+  updatedArray[2] = imageSelection();
+  while (updatedArray[2] === updatedArray[0] || updatedArray[2] === updatedArray[1] || updatedArray[2] === previousArray[0] || updatedArray[2] === previousArray[1] || updatedArray[2] === previousArray[2]) {
+    updatedArray[2] = imageSelection();
+  }
+}
 
   function threeImageRender() {
   leftField.src = productArray[0].filepath;
+    productArray[updatedArray[0]].views += 1;
   centerField.src = productArray[1].filepath;
+    productArray[updatedArray[1]].views += 1;
   rightField.src = productArray[2].filepath;
+    productArray[updatedArray[2]].views += 1;
+  }
+  //Section for Handler
+  function clickHandlingGlory(event) {
+  event.preventDefault();
+  if(event.target.id === 'playingField') {
+    alert('Please click on an actual image');
+
+  } else {
+    if(clicks < 25) {
+      for(var i = 0; i < imageIdentifiers.length; i++) {
+        if(event.target.id === imageIdentifiers[i].id) {
+          imageIdentifiers[i].clicks += 1;
+
+        }
+      }
+      clicks += 1;
+     threeImageRender();
+
+   } else if (clicks === 25) {
+      //enter something to reveal the button I've yet to make
+    }else {
+      playingField.removeEventListener('click', clickHandlingGlory());
+    }
+
+  }
   }
 
 
